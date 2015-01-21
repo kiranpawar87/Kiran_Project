@@ -1,0 +1,88 @@
+.page{
+    margin:0 auto;
+    width:80%;
+    background-color:antiquewhite;
+    text-align:center;
+    padding:10px;
+    border-radius:10px;
+}
+.page h2{
+    background-color:yellow;
+}
+.btnDiv{
+    width:10%;
+    left:0px;
+
+}
+.btnDiv button{
+    height:40px;
+    background-color: orange;
+}
+.formDiv img{
+
+
+    left:0px;
+    float:left;
+    height:150px;
+    width:15%;
+    margin-right:3%;
+    margin-bottom:2%;
+
+}
+input{
+    height:30px;
+    width:70%;
+    margin-bottom:5px;
+
+}
+.formDiv p
+{
+    margin-top:5%;
+    float:left;
+}
+.form{
+    clear:both;
+    float:left;
+    width:40%;
+    padding:0px;
+    position:relative;
+    margin-right:5px;
+    border:1px solid;
+}
+.form p{
+    left:0px;
+    width:80%;
+}
+.btn{
+    height:30px;
+    background-color:orange;
+    font-family: 'Shift', sans-serif;
+    font-size: 16px;
+}
+.recordGrid{
+    float:left;
+    width:58%;
+    overflow:scroll;
+    height:185px;
+
+}
+.recordGrid table{
+    width:100%;
+}
+.footer{
+    clear:both;
+}
+.updateButton{
+
+}
+a {
+
+    left: 50px;
+    clear:both;
+    float:left;
+    margin-top:-50px;
+}
+label{
+    color:red;
+
+}
