@@ -1,0 +1,92 @@
+@font-face {
+    font-family: "Raleway-SemiBold";
+    src: url("fonts/Raleway-SemiBold.tff");
+}
+.page{
+    margin:0 auto;
+    width:80%;
+    background-color:blanchedalmond;
+    clear:both;
+    padding:10px;
+}
+.jumbotron{
+    margin-bottom:0px;
+}
+.jumbotron .heading{
+    font:"Raleway-SemiBold";
+    font-size: 48px;
+    margin-left:15%;
+    float:left;
+}
+.header{
+    height:150px;
+}
+.details{
+    float:right;
+    margin-right:20%;
+}
+.details ul li{
+    display: inline;
+    padding:5px;
+}
+.image{
+    height:420px;
+    width:100%;
+    border:1px solid;
+    margin-bottom:10px;
+}
+.first_row{
+    padding:10px;
+    margin-right:5px;
+}
+.over_image{
+    opacity:0.70;
+    width:97.66%;
+    left:14px;
+    top:60%;
+    height:38%;
+    background-color: #adadaa;
+    color:white;
+    resize:vertical;
+    overflow:auto;
+}
+.sub_col_1,.sub_col_2
+{
+    background-color:#adadaa;
+    margin-bottom:10px;
+    padding:10px 10px 0px 10px;
+    margin-left:10px;
+}
+.second_row{
+    padding:10px;
+    margin-left:10px;
+    margin-right:10px;
+    background-color: #adadaa;
+    margin-bottom:20px;
+}
+.footer{
+    width:100%;
+    background-color: #737371;
+    height:100px;
+
+}
+.footer_para{
+    margin-left:15%;
+    padding-top:10px;
+
+}
+.details li a{
+    font:"Raleway-SemiBold";
+    font-size: 20px;
+    font-style: normal;
+    text-decoration: none;
+    color:#222222;
+}
+.col-sm-8{
+    margin-right:0px;
+    padding-right:0px;
+}
+h3{
+    margin:0px;
+
+}
