@@ -1,0 +1,44 @@
+<div class="header">
+    <h1>Hangman</h1>
+</div>
+<div class="panel">
+    <div class="login">
+      <h2>Login</h2>
+     <%= form_tag :controller => :hangman, :action => :login do%>
+
+          <%=text_field_tag 'username',nil,:placeholder=>'Username'%><br><br>
+          <%=password_field_tag 'password',nil,:placeholder=>'Password'%><br><br>
+          <%=submit_tag "Login" %>
+        <button type="button" name="cancel">Cancel</button>
+    <%end%>
+    </div>
+    <div class="signup">
+        <h2>Sign up</h2>
+      <%= form_tag :controller => :hangman, :action => :create do %>
+
+          <%=text_field_tag 'fname',@posts.fname,:placeholder=>'First Name'%>&nbsp;&nbsp;&nbsp;
+          <%=text_field_tag 'lname',@posts.lname,:placeholder=>'Last Name'%><br><br>
+          <%=email_field_tag 'email',@posts.uname,:placeholder=>'Email Id'%><br><br>
+
+          <%=password_field_tag 'pass',nil,:placeholder=>'Password'%><br><br>
+          <%=password_field_tag 'c_pass',nil,:placeholder=>'Confirm Password'%><br><br>
+
+          <%=button_tag 'Sign up'%>
+          <%=button_tag 'cancel',{:name=>'cancel'}%>
+       <%end%>
+
+      <%=@btn%>
+    </div>
+  <div class="ErrorMessages">
+  <% [:error].each_with_index do |key,i| %>
+      <% if flash[key] %>
+          <ul class="<%= key %>" id="flash">
+            <li><%=flash[key]%></li>
+          </ul>
+      <% end %>
+  <% end %>
+</div>
+</div>
+<div class="footer">
+  &copy copyrights are reserved.
+</div>

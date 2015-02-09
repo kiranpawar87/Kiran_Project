@@ -1,0 +1,61 @@
+<%= javascript_include_tag "game" %>
+<div class="header">
+  <div class="log">
+    <%=label_tag 'wins', @wins%><br>
+    <%=label_tag 'lose', @lose%>
+  </div>
+        <h2>Welcome to hangman <%=@user%></h2>
+
+        <div class="logout"><h4><%=link_to 'Logout',{:controller => "hangman", :action => "index"}%></h4></div>
+</div>
+<div class="full_page">
+
+
+  <div class="aside">
+       <h2>Categories</h2>
+    <hr>
+
+    <% @cat.each do |i| %>
+        <%=link_to  i.cat_name, {:controller => "hangman", :action => "reset", :name=>i.id}%><br>
+    <%end%>
+
+  </div>
+  <div class="section">
+    <h2><%=@c_name%></h2>
+    <hr>
+    <%= form_tag :controller => :hangman, :action => :wordFormed  do%>
+        <%=text_field_tag @input,nil,:placeholder=>'Enter your text' %>
+        <!--<button type="button" class=<%=@btn%>>Ok</button>-->
+        <button type="submit" name="button" class=<%=@btn%>>Ok</button>
+    <%end%>
+    <!--<br><br>-->
+    <div class="image">
+      <%=image_tag @hangImage %>
+    </div>
+    <div class="rightDiv">
+      <%=@attempts%>
+    </div>
+    <div class="word">
+
+        <a href="#" name="target_word"><%=@word%></a><br>
+      <br><br><br>
+
+      </p>
+    </div>
+
+    <div class="bottom_content">
+      <p>
+        <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+        <%=@cat_name%>
+      <%=@wrongWords%>
+
+      <h3><%=@failed%></h3>
+      <%=link_to @newGame, {:controller => "hangman", :action => "reset"}%><br>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  &copy copyrights are reserved.
+</div>

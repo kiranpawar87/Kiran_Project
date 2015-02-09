@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uid: 1
+  fname: MyString
+  lname: MyString
+  uname: MyString
+  pass: MyString
+
+two:
+  uid: 1
+  fname: MyString
+  lname: MyString
+  uname: MyString
+  pass: MyString
