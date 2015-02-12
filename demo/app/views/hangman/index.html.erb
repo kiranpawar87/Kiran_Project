@@ -1,30 +1,52 @@
-<div class="header">
-    <h1>Hangman</h1>
-</div>
-<div class="panel">
-    <div class="login">
-      <h2>Login</h2>
-     <%= form_tag :controller => :hangman, :action => :login do%>
-
-          <%=text_field_tag 'username',nil,:placeholder=>'Username'%><br><br>
-          <%=password_field_tag 'password',nil,:placeholder=>'Password'%><br><br>
-          <%=submit_tag "Login" %>
-        <button type="button" name="cancel">Cancel</button>
-    <%end%>
+<div class="row header">
+  <div class="col-md-8">
+    <div class="starter-template">
+        <h1>Hangman</h1>
+        <p class="lead">
+            You need to login to play hangman.
+        </p>
     </div>
-    <div class="signup">
+   </div>
+   <div class="col-md-4">
+       <div class="login">
+         <!--<h2>Login</h2>-->
+         <%= form_tag :controller => :hangman, :action => :login do%>
+
+            <h3>Login</h3> <%=text_field_tag 'username',nil,:placeholder=>'Username'%>
+             <%=password_field_tag 'password',nil,:placeholder=>'Password'%>
+             <%=submit_tag "Login",{:class=>"btn btn-info"} %>
+             <button type="button" name="cancel" class="btn btn-info">Cancel</button>
+         <%end%>
+       </div>
+   </div>
+</div>
+<div class="full_page">
+<div class="row">
+  <div class="col-md-8 imgDiv">
+
+    <h3>Check your vocabulary</h3>
+    <ul>
+      <li>Improves Vocabulary</li>
+      <li>Checks Thinking capability</li>
+    </ul>
+
+    <ul type="none">
+      <li></li>
+    </ul>
+   </div>
+  <div class="col-md-4 signup">
         <h2>Sign up</h2>
       <%= form_tag :controller => :hangman, :action => :create do %>
 
           <%=text_field_tag 'fname',@posts.fname,:placeholder=>'First Name'%>&nbsp;&nbsp;&nbsp;
           <%=text_field_tag 'lname',@posts.lname,:placeholder=>'Last Name'%><br><br>
-          <%=email_field_tag 'email',@posts.uname,:placeholder=>'Email Id'%><br><br>
+          <%=email_field_tag 'email',@posts.uname,:placeholder=>'Email Id/Username'%><br><br>
 
           <%=password_field_tag 'pass',nil,:placeholder=>'Password'%><br><br>
           <%=password_field_tag 'c_pass',nil,:placeholder=>'Confirm Password'%><br><br>
 
-          <%=button_tag 'Sign up'%>
-          <%=button_tag 'cancel',{:name=>'cancel'}%>
+          <%=button_tag 'Sign up',{:class=>"btn btn-info"}%>
+          <%=button_tag 'cancel',{:name=>'cancel', :class=>"btn btn-info"}%>
        <%end%>
 
       <%=@btn%>
@@ -37,6 +59,7 @@
           </ul>
       <% end %>
   <% end %>
+</div>
 </div>
 </div>
 <div class="footer">

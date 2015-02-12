@@ -29,6 +29,17 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'client_side_validations'
 
+gem 'jquery-turbolinks'
+
+gem 'newrelic_rpm'
+gem 'rspec-collection_matchers'
+gem 'bootstrap-sass', '~> 3.3.3'
+gem 'capybara'
+gem 'mocha'
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+end
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150206051300) do
+ActiveRecord::Schema.define(version: 20150204091726) do
 
   create_table "categories", force: true do |t|
     t.string   "cat_name"
@@ -26,8 +26,6 @@ ActiveRecord::Schema.define(version: 20150206051300) do
     t.integer  "category_id"
   end
 
-  add_index "nouns", ["category_id"], name: "index_nouns_on_category_id", using: :btree
-
   create_table "user_infos", force: true do |t|
     t.string   "fname"
     t.string   "lname"
@@ -35,8 +33,6 @@ ActiveRecord::Schema.define(version: 20150206051300) do
     t.string   "pass"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "wins"
-    t.integer  "lose"
   end
 
 end

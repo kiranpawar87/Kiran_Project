@@ -24,9 +24,9 @@
     <h2><%=@c_name%></h2>
     <hr>
     <%= form_tag :controller => :hangman, :action => :wordFormed  do%>
-        <%=text_field_tag @input,nil,:placeholder=>'Enter your text' %>
+        <%=text_field_tag @input,nil,:placeholder=>'Enter your text',autofocus: true%>
         <!--<button type="button" class=<%=@btn%>>Ok</button>-->
-        <button type="submit" name="button" class=<%=@btn%>>Ok</button>
+        <button type="submit" name="button" onclick="show_alert()" class=<%=@btn%>>Ok</button>
     <%end%>
     <!--<br><br>-->
     <div class="image">
@@ -44,10 +44,12 @@
     </div>
 
     <div class="bottom_content">
-      <p>
-        <% flash.each do |key, value| %>
-          <div class="alert alert-<%= key %>"><%= value %></div>
+
+          <% flash.each do |key, value| %>
+
+          <div class="<%= key %>"><%= value %></div>
       <% end %>
+
         <%=@cat_name%>
       <%=@wrongWords%>
 

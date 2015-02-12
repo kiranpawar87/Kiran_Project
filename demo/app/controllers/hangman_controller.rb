@@ -1,4 +1,5 @@
 class HangmanController < ApplicationController
+ include GameHelper
   @cnt=0
   def index
 
@@ -163,12 +164,13 @@ class HangmanController < ApplicationController
 
   def wordFormed
 
-    @input="inputVal"
+
+
     if(session[:uname].blank?)
       redirect_to :controller=>:hangman, :action=>:Error
       return
     end
-
+    @input="inputVal"
     #reseting messages
     flash[:success]=""
     @newGame=""
@@ -182,6 +184,7 @@ class HangmanController < ApplicationController
     @len=@targetWord.length
     @cnt=session[:cnt]
      @value=params[:inputVal].upcase
+    
     @word=session[:word]
     @i=0;
     @wrongAttempt=session[:wrongAttempt]
