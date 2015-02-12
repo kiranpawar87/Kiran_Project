@@ -12,7 +12,7 @@ RSpec.describe HangmanController, type: :model do
     it "is invalid without a firstname" do
       obj=UserInfo.create(fname:'kiran',lname:'pawar',uname:'kiranpawar@gmail.com',pass:'kiranpawar')
 
-       expect(obj[:fname]).to match(/^[A-Za-z]*$/)
+                                                                       #match(/^[A-Za-z]*$/)
        expect(obj).to have(0).error_on(:fname)
 
     end

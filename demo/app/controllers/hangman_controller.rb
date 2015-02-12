@@ -22,7 +22,7 @@ class HangmanController < ApplicationController
       @uname=params[:email]
       @pass=params[:pass]
       if(@pass==params[:c_pass])
-        @posts=UserInfo.new(:fname=>@fname,:lname=>@lname,:uname=>@uname,:pass=>@pass,:wins=>"0",:lose=>"0")
+        @posts=UserInfo.new(:fname=>@fname,:lname=>@lname,:uname=>@uname,:pass=>@pass)#,:wins=>"0",:lose=>"0")
         @posts.save
         if !@posts.save
           flash[:error]=@posts.errors.full_messages.first
@@ -152,11 +152,10 @@ class HangmanController < ApplicationController
 
     @i=0
     while @i<@len && session[:firstFlag]==0
-      @op="I am in op for once"
+
       @word[@i]="-"
       @i=@i+1
     end
-
 
     @hangImage="hang0.gif"
     render "hangman/game"
