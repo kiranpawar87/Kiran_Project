@@ -56,7 +56,16 @@ RSpec.describe HangmanController, type: :controller do
     it "render template game from reset" do
        expect(subject).to redirect_to :controller=>:hangman, :action=>:Error
        # expect(subject).to render_template(:game)
+       # expect(reset).to render_template(:game)
     end
+    it "render" do
+      get :reset
+      expect(subject).to render_template("game")
+      # expect(subject).to render_template(:index)
+      # expect(subject).to render_template("index")
+      # expect(subject).to render_template("gadgets/index")
+    end
+
   end
 
   describe "POST wordFormed" do
