@@ -1,0 +1,58 @@
+%body.bodyClass
+  .header
+    .panel
+      .panel-default
+        %h1 Hangman
+        %p Do it or Die for it.
+.row
+  .middle-page
+    .col-md-8
+      .small-panel
+        .panel
+          .panel-default
+          %h2 Sign up
+          = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+
+            = f.label :"First Name"
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            = f.text_field :fname, autofocus: true
+            %br
+            %br
+            = f.label :"Last Name"
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            = f.text_field :lname, autofocus: true
+            %br
+            %br
+            = f.label :email
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            = f.email_field :email, autofocus: true
+            %br
+            %br
+            = f.label :'Password'
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            = f.password_field :password, autocomplete: "off"
+            %br
+            %br
+            = f.label :password_confirmation
+            = f.password_field :password_confirmation, autocomplete: "off"
+            %br
+            %br
+            %div= f.submit "Sign up", :class=>'btn btn-warning'
+            =#{@posts.inspect}
+          = render "devise/shared/links"
+    .col-md-4
+      = devise_error_messages!
+.row
+  .footer
+    .panel
+      .panel-default
+        .contact
+          %p
+            find code on :
+            = link_to "https://github.com/kiranpawar87/Kiran_Project.git" do
+              GitHub
+          %p
+            Website :
+            = link_to "http://localhost:3000/hangman/index" do
+              www.hangman.com
+          %p &copy copyrights are reserved

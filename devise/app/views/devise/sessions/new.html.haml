@@ -1,0 +1,43 @@
+%body.bodyClass
+  .header
+    .panel
+      .panel-default
+        %h1 Hangman
+        %p Do it or Die for it.
+.row
+  .middle-page
+    .col-md-12
+      .small-panel
+        .panel
+          .panel-default
+          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            %h2 Login
+            = f.label :email
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            = f.email_field :email, autofocus: true
+            %br
+            %br
+            = f.label :password
+            = f.password_field :password, autocomplete: "off"
+            %br
+            %br
+            - if devise_mapping.rememberable?
+              = f.check_box :remember_me
+              = f.label :remember_me
+            %br
+            = f.submit "Sign in", :class=>'btn btn-warning'
+          = render "devise/shared/links"
+.row
+  .footer
+    .panel
+      .panel-default
+        .contact
+          %p
+            find code on :
+            = link_to "https://github.com/kiranpawar87/Kiran_Project.git" do
+              GitHub
+          %p
+            Website :
+            = link_to "http://localhost:3000/hangman/index" do
+              www.hangman.com
+          %p &copy copyrights are reserved

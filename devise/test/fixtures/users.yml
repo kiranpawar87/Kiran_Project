@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fname: MyString
+  lname: MyString
+  email: MyString
+  uname: MyString
+  password: MyString
+  wins: 1
+  lose: 1
+  utype: MyString
+
+two:
+  fname: MyString
+  lname: MyString
+  email: MyString
+  uname: MyString
+  password: MyString
+  wins: 1
+  lose: 1
+  utype: MyString
