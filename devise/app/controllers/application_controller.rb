@@ -10,4 +10,7 @@ class ApplicationController < ActionController::Base
   # def layout_by_controller
   #   devise_controller? ? 'devise' : 'application'
   # end
+   def after_sign_out_path_for(resource_or_scope)
+     new_users_path
+   end
 end

@@ -27,6 +27,12 @@
             %br
             = f.submit "Sign in", :class=>'btn btn-warning'
           = render "devise/shared/links"
+          %hr
+          = flash.each do |key, value|
+            .alert{ :class => "alert-#{key}" }
+              %button.close{ :data => { :dismiss => "alert" } } x
+              %strong
+                = value
 .row
   .footer
     .panel

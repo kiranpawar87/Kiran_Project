@@ -1,0 +1,38 @@
+%body.frames
+  %a{ :href => "/users/manage_users", :title => "Back" } Back
+  %div.content-show
+    %h1 Edit Record
+    %hr
+    =form_tag :controller => "users",:action=>"save_record" do
+      %table{:class=> "table-content"}
+        %tr
+          %td
+            =label_tag 'User Id'
+          %td
+            =text_field_tag 'uid',@users[:id],{:name=>'uid',:readonly=>true}
+        %tr
+          %td
+            =label_tag 'First Name'
+          %td
+            =text_field_tag 'fname',@users[:fname],:placeholder=>"Enter First name"
+        %tr
+          %td
+            =label_tag 'Last Name'
+          %td
+            =text_field_tag 'lname',@users[:lname],:placeholder=>"Enter Last name"
+        %tr
+          %td
+            =label_tag 'Email'
+          %td
+            =email_field_tag :email,@users[:email],:placeholder=>"Enter email id"
+        %tr
+          %td
+            =label_tag 'User Type'
+          %td
+            = select(:utype,'type', options_for_select([["Admin"], ["User",:selected=>'selected']]))
+        %tr
+        %tr
+          %td
+            =button_tag 'submit',{:class=>"btn btn-success"}
+          %td
+            =button_tag 'cancel',{:class=>"btn btn-success"}

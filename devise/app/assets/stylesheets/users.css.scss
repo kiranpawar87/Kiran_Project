@@ -100,7 +100,44 @@ body {
 .title{
   float:left;
 }
-.table-content-show{
+.content-show{
   visibility:visible;
+  display: table;
+  margin: 0 auto;
+  text-align: center;
+
+}
+.content-hide{
+  visibility:hidden;
+}
+.middleFrame{
+  width:100%;
+  height:600px;
+}
+.frames{
+  background: transparent;
+}
+.title{
+ margin:0 auto;
+ width:100%;
   text-align:center;
+  border:1px solid;
+
+}
+.table-content{
+  text-align: center;
+  width:100%;
+
+}
+th{
+  text-align:center;
+}
+tr{
+  line-height: 30px;
+}
+.table-alternate-color tr:nth-child(even) {
+  background-color: antiquewhite;
+}
+.table-alternate-color tr:nth-child(odd) {
+  background-color: aquamarine;
 }

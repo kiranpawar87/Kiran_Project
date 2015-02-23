@@ -16,13 +16,11 @@ class Users::RegistrationsController <Devise::RegistrationsController
     if !@posts.save
        super
     else
-      redirect_to :controller=>"/users",:action=>"user_page"
+      redirect_to "/login"
       return
     end
   end
   def destroy
-    super
-    @posts="destroy"
     super
   end
 end

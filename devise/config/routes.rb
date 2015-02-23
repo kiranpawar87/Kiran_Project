@@ -9,13 +9,20 @@ Devise::Application.routes.draw do
    root :to=>"users#admin_page"
   devise_scope :user do
     get "/login" => "devise/sessions#new"
+    get "/logout" => "devise/sessions#destroy"
+    get "/signup"=>"devise/registrations#new"
   end
 
   resource :users
 
   get "users/admin_page"
+  get "users/users_page"
+  get "users/index"
+  get "users/view_users"
   get "users/user_page"
-
+  get "users/manage_users"
+  get "users/edit_record"
+  post "users/save_record"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
