@@ -8,13 +8,26 @@
     %th Last Name
     %th Email
     %th Edit
-    -@users.each do |i|
+    -if @size>1
+      -@users.each do |i|
+        %tr
+          %td
+            #{i[:fname]}
+          %td
+            #{i[:lname]}
+          %td
+            #{i[:email]}
+          %td
+            =link_to 'Edit',{:controller => "/users", :action => "edit_record", :name=>i.id}
+    -elsif @size==0
+      %h2 No record found
+    -else
       %tr
         %td
-          #{i[:fname]}
+          #{@users[:fname]}
         %td
-          #{i[:lname]}
+          #{@users[:lname]}
         %td
-          #{i[:email]}
+          #{@users[:email]}
         %td
-          =link_to 'Edit',{:controller => "/users", :action => "edit_record", :name=>i.id}
+          =link_to 'Edit',{:controller => "/users", :action => "edit_record", :name=>@users[:id]}

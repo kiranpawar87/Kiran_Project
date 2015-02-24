@@ -3,6 +3,10 @@ class UsersController < ApplicationController
     @act=params[:name]
     if(@act=="Manage")
       @source="users/manage_users"
+    elsif(@act=="user_stat")
+      @source="users/user_stat"
+    elsif(@act=="Search")
+      @source="users/manage_users"
     else
       @source="users/user_page"
     end
@@ -18,10 +22,12 @@ class UsersController < ApplicationController
   def view_users
     @state="show"                                             #table division showing
     @title="View Users"                                       #title to division
-   @users=User.all
+    @users=User.all
+    @size=@users.size
   end
   def manage_users
     @users=User.all
+    @size=@users.size
     @state="show"
     @title="Manage Users"
     render "users/view_users"
@@ -60,4 +66,26 @@ class UsersController < ApplicationController
      end
     end
   end
+  def user_stat
+    @state="show"                                             #table division showing
+    @title="User Statistic"                                       #title to division
+    @users=User.all
+  end
+  def search
+    @state="show"                                             #table division showing
+    @title="Users Found"                                       #title to division
+    # @users=User.find_by_email(params[:uname])
+    @full_name=params[:uname].split(" ")
+    @fname=@full_name[0]
+    @lname=@full_name[1]
+    @users=User.find_all_by_fname(@fname)
+    @users+=User.find_all_by_lname(@lname)
+    @size=@users.size
+    if(@users.nil?)
+      @title="No record Found"
+      @size=0
+    end
+    render "users/view_users"
+  end
 end
+

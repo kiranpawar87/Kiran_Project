@@ -21,7 +21,7 @@
               %li
                 =link_to 'Manage User',{:controller => "/users", :action => "admin_page", :name=>'Manage',:target=>"middleFrame"}
         %li
-          %a{:href => "#"} User Statistics
+          =link_to 'User Statistics',{:controller => "/users", :action => "admin_page", :name=>'user_stat',:target=>"middleFrame"}
         %li.dropdown
           %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
             Categories
@@ -30,15 +30,10 @@
             %li
               %a{:href => "#"} Add Category
             %li
-              %a{:href => "#"} Remove Category
-            %li
-              %a{:href => "#"} View Categories
-            %li.divider
-            %li
-              %a{:href => "#"} Edit Category
-      %form.navbar-form.navbar-left{:role => "search"}
+              %a{:href => "#"} Manage Category
+      %form.navbar-form.navbar-left{:controller=>"/users",:action=>"users/search",:target=>"middleFrame",:role => "search"}
         .form-group
-          %input.form-control{:placeholder => "Search User", :type => "text"}
+          %input.form-control{:placeholder => "Firstname Lastname", :type => "text",:name=>"uname"}
         %button.btn.btn-default{:type => "submit"} Submit
       %ul.nav.navbar-nav.navbar-right
         %li

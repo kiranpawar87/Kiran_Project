@@ -1,0 +1,38 @@
+%body.frames
+%div.title
+  %h1 #{@title}
+%div{:class=>"content-#{@state}"}
+  %hr
+  %table{:class=>"table-alternate-color",:border=>1}
+    %th Name of User
+    %th Email
+    %th Wins
+    %th Lose
+    %th Total Played
+    %th Percent Win
+    %th Rank
+
+    -@users.each do |i|
+      %tr
+        %td
+          #{i[:fname]} #{i[:lname]}
+        %td
+          #{i[:email]}
+        %td
+          #{i[:wins]}
+        %td
+          #{i[:lose]}
+        %td
+          #{i[:lose]+i[:wins]}
+        %td
+          -##{(i[:wins]/(i[:lose]+i[:wins]+1)).to_f()*100}
+          -if i[:wins]==0 || i[:lose]==0
+            =0
+          -else
+            #{((i[:wins]*100)/(i[:lose]+i[:wins])).to_f()}
+          -##{40}.percent_of(100)
+        %td
+          #{i[:rank]}
+
+
+

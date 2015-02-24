@@ -23,6 +23,8 @@ Devise::Application.routes.draw do
   get "users/manage_users"
   get "users/edit_record"
   post "users/save_record"
+  get "users/user_stat"
+  get "users/search"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
