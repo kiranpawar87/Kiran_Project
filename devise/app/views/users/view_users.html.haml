@@ -2,7 +2,7 @@
 %div.title
   %h1 #{@title}
 %div{:class=>"content-#{@state}"}
-  %hr
+  -#%hr
   %table{:class=>"table-alternate-color",:border=>1}
     %th First Name
     %th Last Name
@@ -24,10 +24,10 @@
     -else
       %tr
         %td
-          #{@users[:fname]}
+          #{@users[0][:fname]}
         %td
-          #{@users[:lname]}
+          #{@users[0][:lname]}
         %td
-          #{@users[:email]}
+          #{@users[0][:email]}
         %td
-          =link_to 'Edit',{:controller => "/users", :action => "edit_record", :name=>@users[:id]}
+          =link_to 'Edit',{:controller => "/users", :action => "edit_record", :name=>@users[0][:id]}

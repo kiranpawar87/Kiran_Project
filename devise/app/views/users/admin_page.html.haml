@@ -1,5 +1,3 @@
--if user_signed_in?
-  =current_user.email
 %nav.navbar.navbar-default{:role => "navigation"}
   .container-fluid
     / Brand and toggle get grouped for better mobile display
@@ -28,23 +26,21 @@
             %span.caret
           %ul.dropdown-menu{:role => "menu"}
             %li
-              %a{:href => "#"} Add Category
-            %li
-              %a{:href => "#"} Manage Category
+              %a{:href => "users/add_category",:target=>"middleFrame"} Manage Category
       %form.navbar-form.navbar-left{:controller=>"/users",:action=>"users/search",:target=>"middleFrame",:role => "search"}
         .form-group
           %input.form-control{:placeholder => "Firstname Lastname", :type => "text",:name=>"uname"}
         %button.btn.btn-default{:type => "submit"} Submit
       %ul.nav.navbar-nav.navbar-right
         %li
-          %a Welcome Administrator
+          %a Welcome #{current_user.email}
         %li.dropdown
           %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
             Account
             %span.caret
           %ul.dropdown-menu{:role => "menu"}
             %li
-              %a{:href => "#"} Change Password
+              %a{:href => "users/change_pass",:target=>"middleFrame"} Change Password
             %li
               %a{:href => "/logout"} Logout
 %div.middle-page

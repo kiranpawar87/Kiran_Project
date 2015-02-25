@@ -1,0 +1,8 @@
+%body.frames
+%div.title
+  %h3 Sub Categories
+%div{:class=>"content-#{@state}"}
+  %hr
+  -@sub_cats.each do |i|
+    %p.sub-cat-names
+      #{i[:scat_name]}

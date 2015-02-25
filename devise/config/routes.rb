@@ -25,6 +25,14 @@ Devise::Application.routes.draw do
   post "users/save_record"
   get "users/user_stat"
   get "users/search"
+  get "users/add_category"
+  get "users/view_sub_cat"
+  get "users/view"
+  get "users/delete_category"
+  get "users/update_category"
+  post "users/update_record"
+  get "users/change_pass"
+  post "users/reset_pass"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

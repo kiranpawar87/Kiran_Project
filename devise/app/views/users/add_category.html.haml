@@ -1,0 +1,55 @@
+%body.frames
+%div.title
+  %h1 #{@title}
+.row
+  .col-md-4
+    %hr
+    =form_tag :controller => "users",:action=>@action do
+      %table{:class=> "table-content"}
+        %tr
+          %td
+            =label_tag 'Category Name'
+          %td
+            =text_field_tag 'cat_name',@category.cat_name,:placeholder=>"Enter category name"
+        %tr
+          %td
+            =label_tag 'Sub categories'
+          %td
+            =text_area_tag 'sub_cat_name',@sub_cats_rec,:placeholder=>"Enter Comma separated sub categories"
+        %br
+        %tr
+          %td{:colspan=>2}
+            %br
+            %br
+            =button_tag 'submit',{:class=>"btn btn-success",:name=>"submit"}
+            =button_tag 'cancel',{:class=>"btn btn-success"}
+  .col-md-5
+    %div{:class=>"content-#{@state}"}
+      %hr
+      %table{:class=>"table-alternate-color",:border=>1}
+        %th Category Name
+        %th View Sub Categories
+        %th Update
+        %th Delete
+
+        -@cat.each do |i|
+          %tr
+            %td
+              #{i[:cat_name]}
+            %td
+              =link_to 'View',{:action=>"view",:target=>"sub_cat",:name=>i.id}
+            %td
+              =link_to 'Update',{:action=>"update_category",:target=>"sub_cat",:name=>i.id}
+            %td
+              =link_to 'Delete',{:action=>"delete_category",:target=>"sub_cat",:name=>i.id}
+
+  .col-md-2
+    .panel
+      .panel-primary
+        %iframe{:src =>@source1,:name=>"sub_cat",:class=>"sub_cat"}
+.row
+  = flash.each do |key, value|
+    .alert{ :class => "alert-#{key}" }
+      %button.close{ :data => { :dismiss => "alert" } } x
+      %strong
+        = value

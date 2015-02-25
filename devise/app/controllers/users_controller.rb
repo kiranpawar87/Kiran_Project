@@ -1,17 +1,33 @@
 class UsersController < ApplicationController
-  def admin_page
-    @act=params[:name]
-    if(@act=="Manage")
-      @source="users/manage_users"
-    elsif(@act=="user_stat")
-      @source="users/user_stat"
-    elsif(@act=="Search")
-      @source="users/manage_users"
-    else
-      @source="users/user_page"
-    end
-  end
 
+  def admin_page
+     if user_signed_in?
+         @me = current_user.id
+       @cur_user = User.find(@me)
+       @type=@cur_user.utype.split(": ")
+       @type=@type[@type.length-1].downcase().match("user") || @type[@type.length-1].downcase().match("admin")
+       if @type[0]=="admin"
+
+        @cat=Category.all
+        @source1="users/view_sub_cat"
+        @act=params[:name]
+        if(@act=="Manage")
+          @source="users/manage_users"
+        elsif(@act=="user_stat")
+          @source="users/user_stat"
+        elsif(@act=="Search")
+          @source="users/manage_users"
+        else
+          @source="users/manage_users"
+        end
+        else
+         redirect_to :controller=>"users",:action=>"user_page"
+       end
+     else
+       flash[:Error]="You are not a valid user"
+       # redirect_to "/login"
+     end
+  end
   def user_page
   end
 
@@ -43,28 +59,71 @@ class UsersController < ApplicationController
   end
   def save_record
 
-    @row = User.find(params[:uid])
+    if(!params[:uid].blank?)
 
-    if @row.blank?
-      flash[:Error]="User id doesn't exist"
+      @row = User.find(params[:uid])
+
+      if @row.blank?
+        flash[:Error]="User id doesn't exist"
+      else
+        @row.update_attribute(:fname, params[:fname])
+        @row.update_attribute(:lname, params[:lname])
+        @row.update_attribute(:email, params[:email])
+
+
+        @utype=params[:utype]
+        flash[:notice]=@utype
+        if @row.update_attribute(:utype, params[:utype])
+          @state="show"                                             #table division showing
+          @title="View Users"                                       #title to division
+          @users=User.all
+          @size=@users.size
+          render "users/view_users"
+        else
+          flash[:Error]="Record not updated"
+          render "users/edit_record"
+        end
+      end
+    elsif params[:uname]=="Update"
+      @rec=Category.find(session[:cat_id])
+      # @cat_id=@rec.id
+      @row.update_attribute(:cat_name, params[:cat_name])
+      # @row.update_attribute(:lname, params[:lname])
+      # @row.update_attribute(:email, params[:email])
+
     else
-      @row.update_attribute(:fname, params[:fname])
-      @row.update_attribute(:lname, params[:lname])
-      @row.update_attribute(:email, params[:email])
+      @flag=0;
+      @cat_name=params[:cat_name]
+      @row=Category.new(:cat_name=>@cat_name)
+      @row.save
+      if !@row.save
+        flash[:Error]=@row.errors.first
+      else
 
+        @arr=params[:sub_cat_name].split(",")
+        @arr.each do |i|
+          @row1=@row.sub_categories.new(:scat_name=>i)
+          @row1.save
+          if !@row1.save
+            flash[:error]=@row1.errors.first
+            @flag=0
+            break
+          else
+            @flag=1
+          end
+        end
+        if @flag==1
+          flash[:success]="Record Successfully inserted"
+        end
+      end
 
-    @utype=params[:utype]
-      flash[:notice]=@utype
-     if @row.update_attribute(:utype, params[:utype])
-       @state="show"                                             #table division showing
-       @title="View Users"                                       #title to division
-       @users=User.all
-        render "users/view_users"
-     else
-       flash[:Error]="Record not updated"
-       render "users/edit_record"
-     end
+        @cat=Category.all
+        @category=Category.new
+        @state="show"
+        @title="Add Category"
+        render "users/add_category"
     end
+
   end
   def user_stat
     @state="show"                                             #table division showing
@@ -79,13 +138,97 @@ class UsersController < ApplicationController
     @fname=@full_name[0]
     @lname=@full_name[1]
     @users=User.find_all_by_fname(@fname)
-    @users+=User.find_all_by_lname(@lname)
+    @users1=User.find_all_by_lname(@lname)
+    @users=(@users+@users1).uniq
     @size=@users.size
     if(@users.nil?)
       @title="No record Found"
       @size=0
     end
     render "users/view_users"
+  end
+  def add_category
+    set
+    @cat=Category.all
+    @sub_cat_rec=SubCategory.new
+    @category=Category.new
+    # @sub_cats_rec=""
+    @source1="view_sub_cat"
+
+  end
+  def view_sub_cat
+    @id=session[:viewId]
+    @sub_cats=SubCategory.find_all_by_category_id(@id)
+    @category=Category.all
+  end
+  def view
+    @id=params[:name]
+    session[:viewId]=params[:name]
+    @source1="view_sub_cat"
+      set
+     @cat=Category.all
+     @category=Category.new
+
+    render "users/add_category"
+  end
+  def delete_category
+    @id=params[:name]
+    session[:viewId]=params[:name]
+    set
+
+    SubCategory.where(category_id: @id ).destroy_all
+    Category.find(@id).destroy
+
+    render "users/add_category"
+  end
+  def update_category
+    set
+    session[:cat_id]=params[:name]
+    @action="update_record"
+    @category=Category.find(params[:name])
+    @sub_cat_re=SubCategory.where(:category_id=>params[:name])
+    @sub_cats_rec=""
+    @array=[]
+    @cnt=0
+    @sub_cat_re.each do |i|
+      @sub_cats_rec+=i.scat_name+","
+      @array[@cnt]=i.id
+      @cnt=@cnt+1
+    end
+    session[:sub_ids]=@array
+    render "users/add_category"
+  end
+  def set
+    @action="save_record"
+    @source1="view_sub_cat"
+    @state="show"
+    @title="Add Category"
+    @cat=Category.all
+    @category=Category.new
+  end
+  def update_record
+    set
+    @id=session[:cat_id]
+    @row=Category.find(@id)
+    @row.update_attribute(:cat_name,params[:cat_name])
+    @arr=params[:sub_cat_name].split(",")
+    @sub_ids_array=session[:sub_ids]
+
+    @cnt=0
+    @arr.each do |i|
+
+      @rw=SubCategory.find(@sub_ids_array[@cnt])
+      @rw.update_attribute(:scat_name,i)
+      @cnt=@cnt+1
+    end
+    render "users/add_category"
+  end
+  def change_pass
+
+  end
+  def reset_pass
+    set
+    render "users/add_category"
   end
 end
 

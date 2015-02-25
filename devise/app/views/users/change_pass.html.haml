@@ -1,0 +1,32 @@
+%body.frames
+%div.title
+  %h1 Change Password
+.row
+  .col-md-4
+  .col-md-4
+    %hr
+    =form_tag :controller => "users",:action=>"reset_pass" do
+      %table{:class=> "table-content"}
+        %tr
+          %td
+            =label_tag 'Current Password'
+          %td
+            =text_field_tag 'old_pass',nil,:placeholder=>"Enter category name"
+        %tr
+          %td
+            =label_tag 'New Password'
+          %td
+            =password_field 'new_pass',nil,:placeholder=>"Enter Comma separated sub categories"
+        %tr
+          %td
+            =label_tag 'Confirm Password'
+          %td
+            =password_field 'c_pass',nil,:placeholder=>"Enter Comma separated sub categories"
+
+            %br
+        %tr
+          %td{:colspan=>2}
+            %br
+            %br
+            =button_tag 'submit',{:class=>"btn btn-success",:name=>"submit"}
+            =button_tag 'cancel',{:class=>"btn btn-success"}
