@@ -29,6 +29,8 @@ class UsersController < ApplicationController
      end
   end
   def user_page
+    @abc="Comments"
+    @abc=Category.all
   end
 
   def new

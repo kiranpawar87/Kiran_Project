@@ -33,6 +33,10 @@ Devise::Application.routes.draw do
   post "users/update_record"
   get "users/change_pass"
   post "users/reset_pass"
+
+  post "game/start_game"
+
+  post "users/user_page"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

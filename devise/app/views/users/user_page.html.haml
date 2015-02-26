@@ -1,0 +1,80 @@
+%body.bodyClass
+  .header
+    .panel
+      .panel-default
+        %h1 Hangman
+        %p Do it or Die for it.
+    -#=form_for :Category,:as=>:new_category,:url => { :controller => "game", :action => "start_game"},:remote=>true do |f|
+    -#  .field
+    -#    = f.label :cat_name, t('name')
+    -#    = f.text_field :name
+    -#  .actions
+      -#    = f.submit
+  .row
+    .col-md-2
+      .panel
+        .panel-default
+        .aside
+          %h2 Categories
+          %hr
+          .add_new
+            -@abc.each do |i|
+              %h4
+                =link_to i[:cat_name],:action=>"new"
+                -##{i[:cat_name]}
+    .col-md-10
+      .panel
+        .panel-default
+        .section
+          %h3 Select Category
+          %hr
+          .row
+            .col-md-4
+              .img
+                %h2 An image is
+            .col-md-8
+              .game
+                %h2 Start playing game
+                %hr
+                =form_tag :remote=>true,:controller=>"game",:action=>"start_game" do
+                  =label_tag 'Enter Text'
+                  =text_field_tag 'letterIp',nil,:autofocus=>true
+                  =button_tag 'Submit',:class=>"btn btn-warning"
+                %hr
+                .row
+                  .col-md-12
+                    %h2
+                      =label_tag @wordFormed,nil,:class=>"wordFormed"
+          = flash.each do |key, value|
+            .alert{ :class => "alert-#{key}" }
+              %button.close{ :data => { :dismiss => "alert" } } x
+              %strong
+                = value
+  .row
+    .panel
+      .panel-default
+        .footer-user
+          .contact
+            %p
+              find code on :
+              = link_to "https://github.com/kiranpawar87/Kiran_Project.git" do
+                GitHub
+            %p
+              Website :
+              = link_to "http://localhost:3000/hangman/index" do
+                www.hangman.com
+            %p &copy copyrights are reserved
+
+-#=form_tag :controller=>"game",:action=>"start_game",:remote=>true do
+-#  %h1 Hangman Game
+-#  %table{:class=> "table-content"}
+-#    %tr
+-#      %td
+-#        =label_tag 'User Id'
+-#      %td
+-#        =text_field_tag 'uid',@abc[:fname],:placeholder=>"Enter something"
+-#    %tr
+-#      %td
+-#        =button_tag 'submit',{:class=>"btn btn-success"}
+-#      %td
+-#        =button_tag 'cancel',{:class=>"btn btn-success"}
