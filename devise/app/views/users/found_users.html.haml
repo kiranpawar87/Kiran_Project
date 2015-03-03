@@ -1,0 +1,33 @@
+%body.frames
+%div.title
+  %h1 #{@title}
+%div{:class=>"content-#{@state}"}
+  -#%hr
+  %table{:class=>"table-alternate-color",:border=>1}
+    %th First Name
+    %th Last Name
+    %th Email
+    %th Edit
+    -if @size>1
+      -@users.each do |i|
+        %tr
+          %td
+            #{i[:fname]}
+          %td
+            #{i[:lname]}
+          %td
+            #{i[:email]}
+          %td
+            =link_to 'Edit',{:controller => "/users", :action => "edit_record", :name=>i.id}
+    -elsif @size==0
+      %h2 No record found
+    -else
+      %tr
+        %td
+          #{@users[0][:fname]}
+        %td
+          #{@users[0][:lname]}
+        %td
+          #{@users[0][:email]}
+        %td
+          =link_to 'Edit',{:controller => "/users", :action => "edit_record", :name=>@users[0][:id]}

@@ -29,6 +29,9 @@ class UsersController < ApplicationController
      end
   end
   def user_page
+    @user=current_user.id
+    @wins=User.find(@user).wins
+    @lose=User.find(@user).lose
     @abc="Comments"
     @abc=Category.all
   end
@@ -42,6 +45,10 @@ class UsersController < ApplicationController
     @title="View Users"                                       #title to division
     @users=User.all
     @size=@users.size
+    end
+  def found_users
+    @state="show"                                             #table division showing
+    @title="Users Found"                                       #title to divisio
   end
   def manage_users
     @users=User.all
@@ -139,15 +146,15 @@ class UsersController < ApplicationController
     @full_name=params[:uname].split(" ")
     @fname=@full_name[0]
     @lname=@full_name[1]
-    @users=User.find_all_by_fname(@fname)
-    @users1=User.find_all_by_lname(@lname)
+    @users=User.where(:fname=>@fname)
+    @users1=User.where(:lname=>@lname)
     @users=(@users+@users1).uniq
     @size=@users.size
     if(@users.nil?)
       @title="No record Found"
       @size=0
     end
-    render "users/view_users"
+    render "users/found_users"
   end
   def add_category
     set
@@ -160,6 +167,7 @@ class UsersController < ApplicationController
   end
   def view_sub_cat
     @id=session[:viewId]
+    @selected_cat=Category.find(@id).cat_name
     @sub_cats=SubCategory.find_all_by_category_id(@id)
     @category=Category.all
   end
@@ -230,6 +238,11 @@ class UsersController < ApplicationController
   end
   def reset_pass
     set
+    @oldPass=params[:old_pass]
+    @newPass=params[:new_pass]
+    @cPass=params[:c_pass]
+    @rw=User.find(current_user.id)
+    @rw.update_attribute(:password,@newPass)
     render "users/add_category"
   end
 end

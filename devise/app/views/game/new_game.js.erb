@@ -1,0 +1,8 @@
+$('.wordFormed').html("<h2><%= escape_javascript(@wordFormed) %><h2>")
+$('.game p').html("Attempts Remained : <%= escape_javascript($attempt.to_s()) %>")
+var image_path = '<%= asset_path "hang0.gif" %>'
+$('.img > img').attr('src',image_path)
+$('.flash-error').html("<h2><%= escape_javascript(@error) %><h2>")
+$('.flash-success').html("<h2><%= escape_javascript(@success) %><h2>")
+$('.formDiv').show()
+$('.invalid-word').hide()

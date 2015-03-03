@@ -1,1 +1,17 @@
-$('.wordFormed').html("<h4><%= escape_javascript(@wordFormed) %><h4>")
+$('.wordFormed').html("<h2><%= escape_javascript(@wordFormed) %><h2>")
+$('.game p').html("Attempts Remained : <%= escape_javascript($attempt.to_s()) %>")
+var image_path = '<%= asset_path @hangImage %>'
+$('.invalid-word').show()
+$('.invalid-word').html("<%= escape_javascript("Invalid Words : "+$invalidWords) %>")
+$('.letterIp').val("").focus()
+$('.img > img').attr('src',image_path)
+<% if $winFlag ==1 || $loseFlag==1 %>
+$('.wins').html("<%= escape_javascript("Wins : "+@wins.to_s()) %>")
+$('.lose').html("<%= escape_javascript("Lose : "+@lose.to_s()) %>")
+$('.formDiv').hide()
+<% end %>
+$('.flash-error').html("<%= escape_javascript(@error) %>")
+$('.flash-success').html("<%= escape_javascript(@success) %>")
+
+
+

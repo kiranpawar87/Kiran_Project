@@ -27,11 +27,13 @@
           %ul.dropdown-menu{:role => "menu"}
             %li
               %a{:href => "users/add_category",:target=>"middleFrame"} Manage Category
-      %form.navbar-form.navbar-left{:controller=>"/users",:action=>"users/search",:target=>"middleFrame",:role => "search"}
+      %form.navbar-form.navbar-left{:controller=>"/users",:action=>"users/search",:target=>"middleFrame"}
         .form-group
           %input.form-control{:placeholder => "Firstname Lastname", :type => "text",:name=>"uname"}
         %button.btn.btn-default{:type => "submit"} Submit
       %ul.nav.navbar-nav.navbar-right
+        %li
+          =link_to 'Play Game',{:controller => "/users", :action => "user_page", :name=>'Play'}
         %li
           %a Welcome #{current_user.email}
         %li.dropdown
@@ -39,8 +41,6 @@
             Account
             %span.caret
           %ul.dropdown-menu{:role => "menu"}
-            %li
-              %a{:href => "users/change_pass",:target=>"middleFrame"} Change Password
             %li
               %a{:href => "/logout"} Logout
 %div.middle-page

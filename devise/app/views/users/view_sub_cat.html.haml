@@ -1,6 +1,6 @@
 %body.frames
 %div.title
-  %h3 Sub Categories
+  %h3 #{@selected_cat}
 %div{:class=>"content-#{@state}"}
   %hr
   -@sub_cats.each do |i|

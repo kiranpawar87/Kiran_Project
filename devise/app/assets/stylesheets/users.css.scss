@@ -160,6 +160,7 @@ tr{
   font-family:'Andale Mono',sans-serif;
   font-size:14px;
   fon-weight:bold;
+  text-align: center;
 }
 tr,td{
   padding:5px;
@@ -177,8 +178,75 @@ tr,td{
 
 .section{
   text-align:center;
+  height:500px;
 }
 .img,.game{
   width:100%;
   border:2px inset black;
+}
+.flash-error{
+  font-family:Lato, sans-serif;
+  font-size:12px;
+  background-color: Red;
+  color:white;
+}
+.invalid-word{
+  font-family:Lato, sans-serif;
+  font-size:12px;
+  background-color: salmon;
+  color:white;
+}
+.flash-success{
+  font-family:Lato, sans-serif;
+  font-size:12px;
+  background-color: green;
+  color:white;
+}
+.new-game,.formDiv{
+  visibility:hidden;
+}
+.img,img{
+  height:400px;
+}
+.log{
+  float:right;
+  border:1px solid;
+  font-family:'Raleway', sans-serif;
+  font-size:12px;
+  padding:5px;
+
+}
+.logout{
+  float:right;
+  font-size:18px;
+  padding-right:10px;
+
+}
+.logout a{
+  color:red;
+  text-decoration: underline;
+}
+.user p{
+  float:right;
+  font-size:16px;
+  padding-right:10px;
+  color:gray;
+}
+.head{
+  float:left;
+}
+.clear{
+  clear:both;
+}
+.game p{
+  float:right;
+  color:red;
+  font-weght:bold;
+  margin-right:10px;
+  font-size:18px;
+}
+h2,h3{
+  font-family: "Raleway",sans-serif;
+  font-weight:bold;
+
 }

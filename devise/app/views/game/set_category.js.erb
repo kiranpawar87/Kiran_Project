@@ -1,0 +1,15 @@
+$('.section h3').html("<h2><%= escape_javascript($selected_cat) %></h2>")
+$('.wordFormed').html("<h2><%= escape_javascript(@wordFormed) %><h2>")
+$('.game p').html("Attempts Remained : <%= escape_javascript($attempt.to_s()) %>")
+
+$('.flash-error').html("<%= escape_javascript(@error) %>")
+$('.flash-success').html("<%= escape_javascript(@success) %>")
+//$('.flash-success').html("<%= escape_javascript(@error) %>")
+
+$('.formDiv').show()
+$('.formDiv').css("visibility","visible")
+
+$('.new-game').css("visibility","visible")
+
+var image_path = '<%= asset_path "hang0.gif" %>'
+$('.img > img').attr('src',image_path)

@@ -26,7 +26,7 @@
           #{i[:lose]+i[:wins]}
         %td
           -##{(i[:wins]/(i[:lose]+i[:wins]+1)).to_f()*100}
-          -if i[:wins]==0 || i[:lose]==0
+          -if i[:wins]==0 && i[:lose]==0
             =0
           -else
             #{((i[:wins]*100)/(i[:lose]+i[:wins])).to_f()}

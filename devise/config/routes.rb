@@ -24,7 +24,7 @@ Devise::Application.routes.draw do
   get "users/edit_record"
   post "users/save_record"
   get "users/user_stat"
-  get "users/search"
+  post "users/search"
   get "users/add_category"
   get "users/view_sub_cat"
   get "users/view"
@@ -37,6 +37,11 @@ Devise::Application.routes.draw do
   post "game/start_game"
 
   post "users/user_page"
+  get "game/set_category"
+  get "game/set_word"
+  get "game/new_game"
+  get "users/found_users"
+  get "users/search"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

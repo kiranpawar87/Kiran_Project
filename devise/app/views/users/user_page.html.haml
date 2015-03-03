@@ -2,8 +2,18 @@
   .header
     .panel
       .panel-default
-        %h1 Hangman
-        %p Do it or Die for it.
+        .head
+          %h1 Hangman
+          %p Do it or Die for it.
+          -#=current_user.fname
+        .log
+          %p.wins Wins : #{@wins}
+          %p.lose Lose : #{@lose}
+        .logout
+          %a{:href=>"/logout"}Logout
+        .user
+          %p welcome #{current_user.fname} #{current_user.lname}
+        .clear
     -#=form_for :Category,:as=>:new_category,:url => { :controller => "game", :action => "start_game"},:remote=>true do |f|
     -#  .field
     -#    = f.label :cat_name, t('name')
@@ -20,7 +30,7 @@
           .add_new
             -@abc.each do |i|
               %h4
-                =link_to i[:cat_name],:action=>"new"
+                =link_to i[:cat_name],:action=>"set_category",:controller => "game",:id=>i[:id],:remote=>true
                 -##{i[:cat_name]}
     .col-md-10
       .panel
@@ -31,25 +41,29 @@
           .row
             .col-md-4
               .img
-                %h2 An image is
+                =image_tag "hang0.gif"
             .col-md-8
               .game
-                %h2 Start playing game
-                %hr
-                =form_tag :remote=>true,:controller=>"game",:action=>"start_game" do
-                  =label_tag 'Enter Text'
-                  =text_field_tag 'letterIp',nil,:autofocus=>true
-                  =button_tag 'Submit',:class=>"btn btn-warning"
-                %hr
+                %p
+                -#%h2 Start playing game
+                .formDiv
+                  %hr
+                  =form_tag :remote=>true,:controller=>"game",:action=>"start_game" do
+                    =label_tag 'Enter Text'
+                    =text_field_tag 'letterIp',nil,{:class=>"letterIp",:autofocus=>true}
+                    =button_tag 'Submit',:class=>"btn btn-warning"
+                  %hr
                 .row
                   .col-md-12
                     %h2
                       =label_tag @wordFormed,nil,:class=>"wordFormed"
-          = flash.each do |key, value|
-            .alert{ :class => "alert-#{key}" }
-              %button.close{ :data => { :dismiss => "alert" } } x
-              %strong
-                = value
+                    %br
+                .flash-error
+                .flash-success
+                .invalid-word
+                .new-game
+                  =link_to 'New Game',:action=>"new_game",:controller=>"game",:remote=>true
+
   .row
     .panel
       .panel-default
