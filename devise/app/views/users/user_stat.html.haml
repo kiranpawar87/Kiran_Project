@@ -10,7 +10,6 @@
     %th Lose
     %th Total Played
     %th Percent Win
-    %th Rank
 
     -@users.each do |i|
       %tr
@@ -31,8 +30,6 @@
           -else
             #{((i[:wins]*100)/(i[:lose]+i[:wins])).to_f()}
           -##{40}.percent_of(100)
-        %td
-          #{i[:rank]}
 
 
 

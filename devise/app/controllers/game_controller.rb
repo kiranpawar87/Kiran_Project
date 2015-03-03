@@ -117,7 +117,7 @@ class GameController < ApplicationController
     @hangImage="hang#{$cnt}.gif"
     respond_to do |format|
         @abc=Category.all
-        format.html{render "users/user_page"}
+        # format.html{render "users/user_page"}
         format.js
     end
   end
@@ -153,7 +153,7 @@ class GameController < ApplicationController
       reset
       respond_to do |format|
         @abc=Category.all
-        format.html{render "users/user_page"}
+        # format.html{render "users/user_page"}
         format.js
       end
 
@@ -174,7 +174,7 @@ class GameController < ApplicationController
     reset
     respond_to do |format|
       @abc=Category.all
-      format.html{render "users/user_page"}
+      # format.html{render "users/user_page"}
         format.js
     end
   end

@@ -5,13 +5,14 @@ Devise::Application.routes.draw do
   # get "users/user_page"
   #
 
-  devise_for :users ,  :controllers => {:registrations => "users/registrations",:sessions=>"users/sessions"}
-   root :to=>"users#admin_page"
-  devise_scope :user do
-    get "/login" => "devise/sessions#new"
-    get "/logout" => "devise/sessions#destroy"
-    get "/signup"=>"devise/registrations#new"
-  end
+  devise_for :users ,  :controllers => {:registrations => "users/registrations",:sessions=>"users/sessions",:passwords=>"users/passwords"}
+  root :to=>"users#admin_page"
+  # devise_scope :user do
+  #   get "/login" => "users/sessions#new"
+  #   get "/logout" => "users/sessions#destroy"
+  #   get "/signup"=>"users/registrations#new"
+  #   get "/edit"=> "users/passwords#new"
+  # end
 
   resource :users
 
