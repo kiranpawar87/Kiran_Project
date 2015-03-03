@@ -7,12 +7,12 @@ Devise::Application.routes.draw do
 
   devise_for :users ,  :controllers => {:registrations => "users/registrations",:sessions=>"users/sessions",:passwords=>"users/passwords"}
   root :to=>"users#admin_page"
-  # devise_scope :user do
-  #   get "/login" => "users/sessions#new"
-  #   get "/logout" => "users/sessions#destroy"
-  #   get "/signup"=>"users/registrations#new"
-  #   get "/edit"=> "users/passwords#new"
-  # end
+  devise_scope :user do
+    get "/login" => "devise/sessions#new"
+    get "/logout" => "devise/sessions#destroy"
+    get "/signup"=>"devise/registrations#new"
+    get "/edit"=> "devise/passwords#new"
+  end
 
   resource :users
 
@@ -37,7 +37,7 @@ Devise::Application.routes.draw do
 
   post "game/start_game"
 
-  post "users/user_page"
+  # post "users/user_page"
   get "game/set_category"
   get "game/set_word"
   get "game/new_game"
