@@ -80,8 +80,13 @@ body {
   font-family:'Raleway',sans-serif;
   font-size:14px;
 }
-.contact{
-
+.alert{
+  background-color: aquamarine;
+}
+.error-msg{
+  background-color: aquamarine;
+  padding:5px;
+  border-radius: 10px;
 }
 
 //admin's page
@@ -249,4 +254,7 @@ h2,h3{
   font-family: "Raleway",sans-serif;
   font-weight:bold;
 
+}
+.contact p{
+  font-size:16px;
 }

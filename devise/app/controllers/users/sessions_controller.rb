@@ -55,7 +55,7 @@ class Users::SessionsController < Devise::SessionsController
     # end
   end
   def destroy
-    super
-         # redirect_to :controller=>"users/sessions",:action=>"new"
+      super
+           # redirect_to :controller=>"users/sessions",:action=>"new"
   end
 end

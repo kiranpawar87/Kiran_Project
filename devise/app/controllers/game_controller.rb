@@ -2,20 +2,21 @@ class GameController < ApplicationController
   #  $cnt=0
   # $wordForm=[]
   def start_game
+    $count=$count+1
+    p "count : #{$count }"
     @id=current_user.id
     @abc=Category.all
     @i=0
     @flag=0
-    # if($cnt<$len)
+
       @letter=params[:letterIp].upcase()
       @letter=@letter.to_s()
-      if(!@letter.blank?)                                                           #blank letter
-        if(@letter.match("[A-Za-z]*")[0]!="")                                       #valid letter
+      if(!@letter.blank?)                                                                                               #blank letter
+        if(@letter.match("[A-Za-z]*")[0]!="")                                                                           #valid letter
           @a=@letter.match("[A-Za-z]*")
 
-          #  Letter is entered before or not                                        #existence of letter
-          @enteredFlag=0
-
+          #  Letter is entered before or not
+          @enteredFlag=0                                                                                                #existence of a letter
           $enteredWords.each do |ch|
             if ch.upcase()==@letter.upcase()
               @enteredFlag=0
@@ -26,10 +27,11 @@ class GameController < ApplicationController
             end
 
           end
-        if($enteredWords[0].nil?)
-       #      $enteredWords[0]=@letter
+          if($enteredWords[0].nil?)
+            p "M nil"
              @enteredFlag=1
-           end
+          end
+          p "#{@enteredFlag},#{$enteredWords.to_s}"
           if(@enteredFlag==1)
             $enteredWords.append(@letter)
             if(@letter.length==1)
@@ -63,7 +65,7 @@ class GameController < ApplicationController
             # if($wordForm[0]==nil)
             #   reset
             # end
-            @i=0
+            @i=0;
             @completeFlag=0
             while @i<$len
               if $wordForm[@i]!="_"
@@ -106,11 +108,6 @@ class GameController < ApplicationController
       else
         @error="Blank spaces is not allowed"
       end
-    # else
-    #   @error="Sorry,You lose.\nCorrect Word is : #{$targetWord},#{$attempt}"
-    #   $loseFlag=1
-    #   # reset
-    # end
 
     # reset
     @wordFormed=$wordForm.to_s()
@@ -122,6 +119,7 @@ class GameController < ApplicationController
     end
   end
   def reset
+    $count=0
     $enteredWords=Array.new
 
     $wordForm=Array.new
@@ -153,7 +151,7 @@ class GameController < ApplicationController
       reset
       respond_to do |format|
         @abc=Category.all
-        # format.html{render "users/user_page"}
+        format.html{render "users/user_page"}
         format.js
       end
 
@@ -174,7 +172,7 @@ class GameController < ApplicationController
     reset
     respond_to do |format|
       @abc=Category.all
-      # format.html{render "users/user_page"}
+      format.html{render "users/user_page"}
         format.js
     end
   end

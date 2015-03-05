@@ -31,3 +31,9 @@
           #{@users[0][:email]}
         %td
           =link_to 'Edit',{:controller => "/users", :action => "edit_record", :name=>@users[0][:id]}
+.row
+  - flash.each do |key, value|
+    .alert{ :class => "alert-#{key}" }
+      %button.close{ :data => { :dismiss => "alert" } } x
+      %strong
+        = value

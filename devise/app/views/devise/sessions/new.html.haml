@@ -28,7 +28,7 @@
             = f.submit "Sign in", :class=>'btn btn-warning'
           = render "devise/shared/links"
           %hr
-          = flash.each do |key, value|
+          - flash.each do |key, value|
             .alert{ :class => "alert-#{key}" }
               %button.close{ :data => { :dismiss => "alert" } } x
               %strong
@@ -44,6 +44,6 @@
               GitHub
           %p
             Website :
-            = link_to "http://localhost:3000/hangman/index" do
+            = link_to "http://localhost:3000/users/sign_up" do
               www.hangman.com
           %p &copy copyrights are reserved

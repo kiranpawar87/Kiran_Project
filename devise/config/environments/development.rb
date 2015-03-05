@@ -29,16 +29,4 @@ Devise::Application.configure do
   config.reload_classes_only_on_change = false
   config.action_mailer.default_url_options = { :host => 'http://localhost:3000' }
 
-  config.action_mailer.default_url_options = { :host => 'localhost' }
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-      :address              => 'smtp.gmail.com',
-      :port                 => 587,
-      :domain               => 'gmail.com',
-      :user_name            => 'EMAIL_ADDRESS@gmail.com',
-      :password             => 'pass',
-      :authentication       => :plain,
-      :enable_starttls_auto => true,
-      :openssl_verify_mode  => 'none'
-  }
 end

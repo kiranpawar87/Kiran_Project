@@ -26,8 +26,8 @@
             %span.caret
           %ul.dropdown-menu{:role => "menu"}
             %li
-              %a{:href => "users/add_category",:target=>"middleFrame"} Manage Category
-      %form.navbar-form.navbar-left{:controller=>"/users",:action=>"users/search",:target=>"middleFrame"}
+              %a{:href => "/users/add_category",:target=>"middleFrame"} Manage Category
+      %form.navbar-form.navbar-left{:controller=>"/users",:action=>"search",:target=>"middleFrame"}
         .form-group
           %input.form-control{:placeholder => "Firstname Lastname", :type => "text",:name=>"uname"}
         %button.btn.btn-default{:type => "submit"} Submit

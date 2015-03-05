@@ -48,7 +48,7 @@
       .panel-primary
         %iframe{:src =>@source1,:name=>"sub_cat",:class=>"sub_cat"}
 .row
-  = flash.each do |key, value|
+  - flash.each do |key, value|
     .alert{ :class => "alert-#{key}" }
       %button.close{ :data => { :dismiss => "alert" } } x
       %strong

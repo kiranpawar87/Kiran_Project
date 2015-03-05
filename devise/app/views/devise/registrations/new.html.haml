@@ -42,7 +42,8 @@
             =#{@posts.inspect}
           = render "devise/shared/links"
     .col-md-4
-      = devise_error_messages!
+      .error-msg
+        = devise_error_messages!
 .row
   .footer
     .panel
@@ -54,6 +55,6 @@
               GitHub
           %p
             Website :
-            = link_to "http://localhost:3000/hangman/index" do
+            = link_to "http://localhost:3000/users/sign_up" do
               www.hangman.com
           %p &copy copyrights are reserved

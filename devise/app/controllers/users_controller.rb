@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  require 'net/smtp'
   def admin_page
      if user_signed_in?
          @me = current_user.id
@@ -9,16 +9,17 @@ class UsersController < ApplicationController
        if @type[0]=="admin"
 
         @cat=Category.all
-        @source1="users/view_sub_cat"
+        @source1="view_sub_cat"
         @act=params[:name]
+        p @act
         if(@act=="Manage")
-          @source="users/manage_users"
+          @source="manage_users"
         elsif(@act=="user_stat")
-          @source="users/user_stat"
+          @source="user_stat"
         elsif(@act=="Search")
-          @source="users/manage_users"
+          @source="manage_users"
         else
-          @source="users/manage_users"
+          @source="manage_users"
         end
         else
          redirect_to :controller=>"users",:action=>"user_page"
@@ -55,7 +56,8 @@ class UsersController < ApplicationController
     @size=@users.size
     @state="show"
     @title="Manage Users"
-    render "users/view_users"
+    p "title #{@title}"
+    render "/users/view_users"
   end
   def edit_record
     @id=params[:name]
@@ -68,6 +70,7 @@ class UsersController < ApplicationController
   end
   def save_record
 
+    flash[:success]=""
     if(!params[:uid].blank?)
 
       @row = User.find(params[:uid])
@@ -81,12 +84,13 @@ class UsersController < ApplicationController
 
 
         @utype=params[:utype]
-        flash[:notice]=@utype
+
         if @row.update_attribute(:utype, params[:utype])
           @state="show"                                             #table division showing
           @title="View Users"                                       #title to division
           @users=User.all
           @size=@users.size
+          flash[:success]="Record successfully updated"
           render "users/view_users"
         else
           flash[:Error]="Record not updated"
@@ -158,6 +162,19 @@ class UsersController < ApplicationController
   end
   def add_category
     set
+
+
+
+    # msg = "Subject: Hi There!\n\nHi kaushik.....This is a mail from kiran pawar."
+    # smtp = Net::SMTP.new 'smtp.gmail.com', 587
+    # smtp.enable_starttls
+    #
+    # smtp.start("smtp.gmail.com","mailtotest97@gmail.com", "testingmail", :login) do
+    #   @abc=smtp.send_message(msg, "mailtotest97@gmail.com", "kiran@iternia.com")
+    #   p @abc
+    # end
+
+
     @cat=Category.all
     @sub_cat_rec=SubCategory.new
     @category=Category.new
@@ -245,5 +262,9 @@ class UsersController < ApplicationController
     @rw.update_attribute(:password,@newPass)
     render "users/add_category"
   end
+  def index
+    # render "devise/sessions/destroy"
+  end
+
 end
 

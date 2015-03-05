@@ -8,7 +8,7 @@ Demo::Application.routes.draw do
 
   get "hangman/index"
   get "hangman/game"
-  post "hangman/game"
+   post "hangman/game"
   post "hangman/create"
   get "hangman/create"
   post "hangman/login"

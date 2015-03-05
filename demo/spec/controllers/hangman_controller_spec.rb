@@ -54,16 +54,12 @@ RSpec.describe HangmanController, type: :controller do
   describe "GET reset" do
     subject{ get :reset }
     it "render template game from reset" do
+
+      if(session[:uname].blank?)
        expect(subject).to redirect_to :controller=>:hangman, :action=>:Error
-       # expect(subject).to render_template(:game)
-       # expect(reset).to render_template(:game)
-    end
-    it "render" do
-      get :reset
-      expect(subject).to render_template("game")
-      # expect(subject).to render_template(:index)
-      # expect(subject).to render_template("index")
-      # expect(subject).to render_template("gadgets/index")
+      else
+        expect(subject).should render_template(:game)
+      end
     end
 
   end
@@ -72,9 +68,11 @@ RSpec.describe HangmanController, type: :controller do
     render_views
     subject { get :wordFormed }
     it "redirect to Error from game" do
-
-       expect(subject).to redirect_to :controller=>:hangman, :action=>:Error
-       # expect(subject).to render_template(:game)
+      if(session[:uname].blank?)
+        expect(subject).to redirect_to :controller=>:hangman, :action=>:Error
+      else
+        expect(subject).should render_template(:game)
+      end
     end
   end
 end

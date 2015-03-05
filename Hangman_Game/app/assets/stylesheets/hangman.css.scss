@@ -1,0 +1,95 @@
+// Place all the styles related to the hangman controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+  background-image: url("back.jpg");
+  padding:5px;
+}
+
+.panel{
+  background-color:wheat;
+  padding:10px;
+  box-shadow: 10px 10px 5px black;
+
+  z-index: 1;
+//  text-align: Center;
+}
+.panel-default h1{
+  font-family:"Raleway", sans-serif;
+  font-weight: bold;
+  color:white;
+//  text-align:center;
+}
+.panel-default p{
+  margin-left:8%;
+  color:red;
+  font-family:'Raleway',sans-serif;
+  font-size:20px;
+  font-weight:bold;
+}
+.middle-page{
+  margin:0 auto;
+  width:60%;
+  background-color:burlywood;
+  margin-top:0px;
+  z-index:-1;
+  box-shadow: 10px 10px 5px black;
+  text-align: center;
+  margin-top:5%;
+//  overflow:scroll;
+}
+.text{
+  width: 50%;
+}
+.footer{
+  margin-top:2%;
+
+}
+.list
+{
+  list-style-type: none;
+}
+.footer .panel{
+  background-color:wheat;
+  padding:10px;
+  box-shadow: 10px 10px 5px black;
+
+  z-index: 1;
+  //  text-align: Center;
+}
+.footer .panel-default h1{
+  font-family:"Raleway", sans-serif;
+  font-weight: bold;
+  color:white;
+  //  text-align:center;
+}
+.footer .panel-default p{
+  margin-left:8%;
+  color:red;
+  font-family:'Raleway',sans-serif;
+  font-size:14px;
+}
+.contact{
+
+}
+
+//admin's page
+
+.top-bar{
+  float:right;
+  font-family: arial, sans-serif;
+  font-size: 14px;
+  color:yellow;
+}
+.top-bar p{
+  font-family: arial, sans-serif;
+  font-size: 14px;
+  color:yellow;
+}
+.title{
+  float:left;
+}
+.table-content-show{
+  visibility:visible;
+  text-align:center;
+}

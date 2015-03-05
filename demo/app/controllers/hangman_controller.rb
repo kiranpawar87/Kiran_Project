@@ -158,7 +158,7 @@ class HangmanController < ApplicationController
     end
 
     @hangImage="hang0.gif"
-    render "hangman/game"
+     render "hangman/game"
   end
 
   def wordFormed
